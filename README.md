@@ -1,6 +1,6 @@
-# NextJS Todo App
+# ReactJS Todo App
 
-This is a Todo application implemented using NextJS.
+This is a Todo Application that implemented using ReactJS.
 
 
 ## Setting Up the Project
