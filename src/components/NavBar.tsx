@@ -1,9 +1,10 @@
-import React, { useRef, useState, useEffect, SetStateAction } from "react";
+import { useRef, useState, useEffect, useContext } from "react";
 
 import NewTaskModal from "./NewTaskModal";
 import ToDoNavMenuItem from "./ToDoNavMenuItem";
 
-import { Todo } from "../helper";
+import { Todo, getTodos } from "../helper";
+import { currentTodoContext } from "../Context";
 
 function areEqual(obj1: Todo, obj2: Todo) {
     if (obj1 == null || obj2 == null) return false;
@@ -14,10 +15,11 @@ function areEqual(obj1: Todo, obj2: Todo) {
         obj1.isComplete == obj2.isComplete;
 }
 
-export default function NavBar({ setCurrentTodo }: { setCurrentTodo: React.Dispatch<SetStateAction<Todo | null>> }) {
+export default function NavBar() {
     const [todos, setTodos] = useState([]);
     const [modal, setModal] = useState(false);
     const navRef = useRef<HTMLDivElement | null>(null);
+    const {currentTodo, setCurrentTodo} = useContext(currentTodoContext);
 
     function menuCloseHandler() {
         if (navRef.current) {
@@ -38,19 +40,24 @@ export default function NavBar({ setCurrentTodo }: { setCurrentTodo: React.Dispa
 
     useEffect(() => {
         const interval = setInterval(() => {
-            const items = localStorage.getItem('todos') || '[]';
-            const todoList = JSON.parse(items);
+            const todoList = getTodos();
             if (todos.length !== todoList.length || !todoList.every((todo: Todo, idx: number) => areEqual(todo, todos[idx]))) {
                 setTodos(todoList);
             }
-        }, 1000);
+            if (currentTodo && todoList.length > 0) {
+                const todo = todoList.filter((todo: Todo) => todo.id == currentTodo.id);
+                if(!areEqual(currentTodo,todo[0])){
+                    setCurrentTodo(todo.length == 0 ? null : todo[0]);
+                }
+            }
+        }, 300);
 
         return () => {
             clearInterval(interval);
         }
-    }, [todos]);
+    }, [currentTodo, todos]);
 
-    const todoList = todos.map((todo: Todo) => <ToDoNavMenuItem key={todo.id} marked={todo.isComplete} id={todo.id} title={todo.title} onClick={() => setCurrentTodo(todo)} />);
+    const todoList = todos.map((todo: Todo) => <ToDoNavMenuItem key={todo.id} todo={todo} />);
 
     return (
         <nav ref={navRef}>
