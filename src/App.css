@@ -1,0 +1,247 @@
+.hamburg-menu {
+  background-color: transparent;
+}
+
+.hamburg-menu div {
+  width: 30px;
+  height: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: white;
+}
+
+nav {
+  background-color: black;
+  height: 100%;
+  padding: 10px 20px;
+  flex: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main {
+  height: 100%;
+
+  display: flex;
+  flex-direction: row;
+}
+
+div.content {
+  background-color: beige;
+  width: max-content;
+  flex: 8;
+  color: black;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.button {
+  background-color: transparent;
+  border: 0;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button img {
+  filter: invert(100%);
+  width: 60px;
+}
+
+
+div.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.9);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+div.modal-content {
+  background-color: black;
+  width: 80%;
+  height: 80%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button.close-button {
+  margin-left: auto;
+  margin-right: 10px;
+  margin-top: 10px;
+  background-color: transparent;
+}
+
+div.modal-row {
+  width: 100%;
+  padding: 20px;
+}
+
+button.affirm {
+  background-color: green;
+  width: 100px;
+}
+
+button.cancel {
+  background-color: red;
+  width: 100px;
+}
+
+div.modal-row input {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 10px;
+
+  background-color: black;
+  border: 2px solid white;
+}
+
+div.modal-row textarea {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+
+  background-color: black;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+div.modal-row label{
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+div.modal-row button {
+  margin-right: 10px;
+}
+
+
+.center-hor {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+div.nav-row {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  color: white;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; 
+}
+
+div.nav-row button {
+  background-color: transparent;
+}
+
+div.nav-row:hover {
+  scale: 1.2;
+}
+
+div.todo-display {
+  text-align: center;
+  background-color: black;
+  color: white;
+  margin: 0 20px;
+  border-radius: 10px;
+  width: 95%;
+}
+
+div.todo-display p {
+  padding: 10px;
+  margin-top: 0;
+  padding-top: 5px;
+  text-align: justify;
+}
+
+div.todo-display h4 {
+  padding-left: 10px;
+  text-align: left;
+  margin-bottom: 0;
+  text-decoration: underline;
+}
+
+.close{
+  animation-name: shrink;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+
+.open {
+  animation-name: grow;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes shrink {
+  from {margin-left: 0;}
+  to {margin-left: calc(-20% - 90px);}
+}
+
+@keyframes grow {
+  from {margin-left: calc(-20% - 90px);}
+  to {margin-left: 0;}
+}
+
+.menu-info {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: black;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+
+button.todo-display-btn {
+  background-color: red;
+  margin-bottom: 20px;
+}
+
+.span-clickable {
+  padding: 5px;
+}
+
+.span-clickable:hover {
+  scale: 1.3;
+}
+
+
+.invert-img {
+  filter: invert(100%);
+}
+
+div.row-right-align {
+  display: flex;
+}
+
+span.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
