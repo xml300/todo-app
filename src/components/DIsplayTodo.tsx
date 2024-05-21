@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Todo, deleteTodo } from "../helper";
+import { deleteTodo } from "../helper";
 import { currentTodoContext } from "../Context";
 
 export default function DisplayTodo() {
