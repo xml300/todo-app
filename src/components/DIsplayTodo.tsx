@@ -7,7 +7,7 @@ export default function DisplayTodo() {
   
   function clickHandler() {
     setCurrentTodo(null);
-    // if(todo) deleteTodo(todo.id);
+    if(todo) deleteTodo(todo.id);
   }
 
   return (
