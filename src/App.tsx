@@ -1,31 +1,10 @@
-import React, { useState, createContext, useContext, ReactNode, useEffect } from 'react';
+import React, { useState, ReactNode, useEffect } from 'react';
 import { Todo } from './types';
 import TodoList from './components/TodoList';
 import TodoDetailPage from './pages/TodoDetailPage';
 import NewTodoPage from './pages/NewTodoPage';
+import { useTodoContext, TodoContext } from './TodoContext';
 
-interface TodoContextType {
-  todos: Todo[];
-  addTodo: (todo: Todo) => void;
-  updateTodo: (todo: Todo) => void;
-  deleteTodo: (id: string) => void;
-  viewMode: 'list' | 'grid';
-  setViewMode: (mode: 'list' | 'grid') => void;
-  selectedTodo: Todo | null;
-  setSelectedTodo: (todo: Todo | null) => void;
-  currentPage: string;
-  navigate: (page: string, todo?: Todo) => void;
-}
-
-const TodoContext = createContext<TodoContextType | undefined>(undefined);
-
-export const useTodoContext = () => {
-  const context = useContext(TodoContext);
-  if (!context) {
-    throw new Error('useTodoContext must be used within a TodoProvider');
-  }
-  return context;
-};
 
 interface TodoProviderProps {
   children: ReactNode;

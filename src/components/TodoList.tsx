@@ -1,10 +1,11 @@
 import React from 'react';
-import { useTodoContext } from '../App';
+import { useTodoContext } from '../TodoContext';
 import TodoCard from './TodoCard';
 import { List, Grid, Plus, Square, CheckSquare, Edit, Trash2 } from 'lucide-react';
+import { Todo } from '../types';
 
 interface TodoListProps {
-  navigate: (page: string, todo?: any) => void;
+  navigate: (page: string, todo?: Todo) => void;
 }
 
 const TodoList: React.FC<TodoListProps> = ({ navigate }) => {
@@ -17,7 +18,7 @@ const TodoList: React.FC<TodoListProps> = ({ navigate }) => {
     }
   };
 
-  const handleViewDetails = (todo: any) => {
+  const handleViewDetails = (todo: Todo) => {
     navigate('detail', todo);
   };
 
@@ -79,7 +80,21 @@ const TodoList: React.FC<TodoListProps> = ({ navigate }) => {
               />
             ))
           ) : (
-            <table className="min-w-full bg-white rounded-lg shadow-md">
+            <>
+              <div className="space-y-3 md:hidden">
+                {todos.map((todo) => (
+                  <TodoCard
+                    key={todo.id}
+                    todo={todo}
+                    onToggleComplete={handleToggleComplete}
+                    onViewDetails={handleViewDetails}
+                    onEdit={handleEdit}
+                    onDelete={handleDelete}
+                  />
+                ))}
+              </div>
+              <div className="hidden md:block">
+              <table className="min-w-full bg-white rounded-lg shadow-md">
               <thead>
                 <tr className="w-full bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                   <th className="py-3 px-6 text-left">Status</th>
@@ -143,6 +158,8 @@ const TodoList: React.FC<TodoListProps> = ({ navigate }) => {
                 ))}
               </tbody>
             </table>
+              </div>
+            </>
           )}
         </div>
       )}
